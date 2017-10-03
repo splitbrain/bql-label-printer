@@ -2,25 +2,28 @@
 <head>
     <title>Label Printer</title>
 </head>
-<link rel="stylesheet" href="{{ url_for('static', filename='label.css') }}" type="text/css"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='sakura.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}" type="text/css"/>
 <body>
 
-<div style="display: inline-block; border: 1px solid red">
-    <div style="width: 696px; height:271px;" id="label">
-        <div class="single" style="height:50px; font-size: 40px; font-weight: bold">
-            <span id="pl1">Main Label</span>
-        </div>
-        <div class="single" style="height:40px; font-size: 30pt; font-style: italic">
-            <span id="pl2">Sub Label</span>
-        </div>
-        <div class="multi" style="height:55px; font-size: 20px">
-            <span id="pl3">Info</span>
-        </div>
-        <div class="multi" style="height:125px; font-size: 15px">
-            <span id="pl4">Small Print</span>
-        </div>
-    </div>
+<form>
+    <label for="sel-label">Label:
+    <select id="sel-label" name="labels">
+        {% for label in labels %}
+            <option>{{ label }}</option>
+        {% endfor %}
+    </select>
+    </label>
+</form>
+
+<div id="wrapper">
+    Loading template...
 </div>
+
+<form id="form">
+    
+</form>
+
 
 <button id="btn">Print</button>
 

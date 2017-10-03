@@ -4,6 +4,10 @@
 Simple Web Interface to create labels on a Brother Printer
 """
 
+import sys
+from glob import glob
+from os.path import basename
+
 from PIL import Image
 from brother_ql import BrotherQLRaster, create_label
 from brother_ql.backends import backend_factory, guess_backend
@@ -23,21 +27,25 @@ LABEL_SIZES = [(name, label_type_specs[name]['name']) for name in label_sizes]
 
 @app.route('/')
 def do_editor():
-    return render_template('index.html')
+    """
+    The main editor view
+    :return:
+    """
+    return render_template(
+        'index.html',
+        labels=get_labels()
+    )
 
 
 @app.route('/print', methods=['POST'])
 def do_print():
-    print(vars(request.files['data']))
-
-    # request.files['data'].save('/tmp/test.png')
-
-    # brother_ql_create()
-
+    """
+    Receive the image from the frontend and print it
+    :return: string a simple 'ok' when no exception was thrown
+    """
     im = Image.open(request.files['data'])
-
     qlr = BrotherQLRaster(MODEL)
-    create_label(qlr, im, '62x29', threshold=70, cut=True, rotate=0)
+    create_label(qlr, im, request.form['size'], threshold=70, cut=True, rotate=0)
 
     # noinspection PyCallingNonCallable
     be = BACKEND_CLASS(BACKEND_STRING_DESCR)
@@ -48,7 +56,20 @@ def do_print():
     return 'ok'
 
 
+def get_labels():
+    """
+    List the available label templates
+    :return:
+    """
+    filenames = glob(sys.path[0] + '/static/labels/*.html')
+    return [basename(x[:-5]) for x in filenames]
+
+
 def main():
+    """
+    Initializes the webserver
+    :return:
+    """
     global DEBUG, MODEL, BACKEND_CLASS, BACKEND_STRING_DESCR
     import argparse
     parser = argparse.ArgumentParser(description=__doc__)
@@ -56,7 +77,8 @@ def main():
     parser.add_argument('--debug', action='store_true', default=False, help='Activate flask debugging support')
     parser.add_argument('--model', default='QL-500', choices=models, help='The model of your printer (default: QL-500)')
     parser.add_argument('printer',
-                        help='String descriptor for the printer to use (like tcp://192.168.0.23:9100 or file:///dev/usb/lp0)')
+                        help='String descriptor for the printer to use (like tcp://192.168.0.23:9100 or '
+                             'file:///dev/usb/lp0)')
     args = parser.parse_args()
 
     DEBUG = args.debug

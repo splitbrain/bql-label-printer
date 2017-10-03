@@ -89,7 +89,7 @@ def main():
         BACKEND_CLASS = backend_factory(selected_backend)['backend_class']
         BACKEND_STRING_DESCR = args.printer
     except:
-        parser.error("Couln't guess the backend to use from the printer string descriptor")
+        parser.error("Couldn't guess the backend to use from the printer string descriptor")
 
     app.run(port=args.port, debug=DEBUG)
 

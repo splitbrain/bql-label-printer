@@ -4,7 +4,7 @@
     display: inline-block;
     border: 1px solid #333;
     font-family: Arial, sans-serif;
-    line-height: 1.5em;
+    line-height: normal;
 }
 
 #wrapper * {
@@ -26,4 +26,10 @@
     justify-content: center;
     text-align: center;
     overflow: hidden;
+}
+
+#wrapper div.left {
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
 }

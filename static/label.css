@@ -1,0 +1,20 @@
+#label {
+    font-family: Arial, sans-serif;
+}
+
+#label div.single {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#label div.multi {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}

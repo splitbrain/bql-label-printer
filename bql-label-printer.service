@@ -1,0 +1,13 @@
+[Unit]
+Description=Brother Label Printer UI
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/bql-label-printer
+ExecStart=/home/pi/bql-label-printer/env/bin/python app.py --host 0.0.0.0 --model QL-500 tcp://192.168.1.1:9100
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

@@ -73,6 +73,7 @@ def main():
     global DEBUG, MODEL, BACKEND_CLASS, BACKEND_STRING_DESCR
     import argparse
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--host', default='127.0.0.1', help='The IP the webserver should bind to. Use 0.0.0.0 for all')
     parser.add_argument('--port', default=8013, help='The port the webserver should start on')
     parser.add_argument('--debug', action='store_true', default=False, help='Activate flask debugging support')
     parser.add_argument('--model', default='QL-500', choices=models, help='The model of your printer (default: QL-500)')
@@ -91,7 +92,7 @@ def main():
     except:
         parser.error("Couldn't guess the backend to use from the printer string descriptor")
 
-    app.run(port=args.port, debug=DEBUG)
+    app.run(host=args.host, port=args.port, debug=DEBUG)
 
 
 if __name__ == "__main__":

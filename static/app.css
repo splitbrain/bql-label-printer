@@ -28,6 +28,10 @@
     overflow: hidden;
 }
 
+#wrapper div.top {
+    justify-content: flex-start;
+}
+
 #wrapper div.left {
     text-align: left;
     padding-left: 10px;

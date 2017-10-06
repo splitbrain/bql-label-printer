@@ -1,3 +1,10 @@
+#scalefix {
+    width: 100%;
+    height: 500px;
+    overflow: auto;
+    margin-bottom: 1em;
+}
+
 #wrapper {
     background-color: #fff;
     color: #000;
@@ -5,6 +12,9 @@
     border: 1px solid #333;
     font-family: Arial, sans-serif;
     line-height: normal;
+    transform: scale(0.33);
+    transform-origin: top right;
+    float: right;
 }
 
 #wrapper * {

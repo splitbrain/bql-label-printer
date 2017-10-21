@@ -1,10 +1,11 @@
-brother-ql==0.8.1
+brother-ql==0.8.2
 click==6.7
 Flask==0.12.2
 future==0.16.0
 itsdangerous==0.24
 Jinja2==2.9.6
 MarkupSafe==1.0
+numpy==1.13.3
 olefile==0.44
 packbits==0.6
 Pillow==4.3.0

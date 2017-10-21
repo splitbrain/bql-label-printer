@@ -17,6 +17,10 @@
     float: right;
 }
 
+#wrapper>* {
+    overflow: hidden;
+}
+
 #wrapper * {
     color: #000;
 }

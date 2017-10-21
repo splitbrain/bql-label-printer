@@ -30,6 +30,8 @@ The templates need to contain exactly one root element, specifying the exact siz
 
 Elements containing an `input` class can be edited through the form.
 
+Divs with the `qrcode` class will be converted to a QR Code. They also need the `input` class and a `data-value` attribute instead of an inner text.
+
 ## Feedback
 
 Please feel free to submit feedback in the form of pull requests.
@@ -41,3 +43,4 @@ Many thanks to the following projects:
 * [pklaus/brother_ql](https://github.com/pklaus/brother_ql)
 * [tsayen/dom-to-image](https://github.com/tsayen/dom-to-image)
 * [oxalorg/sakura](https://github.com/oxalorg/sakura)
+* [KeeeX/qrcodejs](https://github.com/KeeeX/qrcodejs)

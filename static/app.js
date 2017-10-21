@@ -17,6 +17,7 @@ labelSelect.onchange = function loadTemplate() {
         .then(function (text) {
             wrapper.innerHTML = text;
             buildForm();
+            buildQR();
         })
         .catch(function (error) {
             console.error('oops, something went wrong!', error);
@@ -36,12 +37,34 @@ function buildForm() {
     for (let input of inputs) {
 
         let inp = document.createElement('textarea');
-        inp.placeholder = input.innerText;
-        inp.oninput = function () {
-            input.innerText = inp.value;
-        };
 
+        if (input.dataset.value) {
+            inp.placeholder = input.dataset.value;
+            inp.oninput = function () {
+                input.dataset.value = inp.value;
+                if(input.qrcode) {
+                    input.qrcode.makeCode(inp.value);
+                }
+            };
+        } else {
+            inp.placeholder = input.innerText;
+            inp.oninput = function () {
+                input.innerText = inp.value;
+            };
+        }
         form.appendChild(inp);
+    }
+}
+
+/**
+ * Attach QR code handling
+ */
+function buildQR() {
+    const inputs = wrapper.querySelectorAll('.qrcode');
+
+    for (let input of inputs) {
+        input.qrcode = new QRCode(input, {width: input.offsetWidth, height: input.offsetWidth});
+        input.qrcode.makeCode(input.dataset.value);
     }
 }
 

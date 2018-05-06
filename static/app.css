@@ -51,3 +51,9 @@
     padding-left: 10px;
     padding-right: 10px;
 }
+
+#wrapper div.right {
+    text-align: right;
+    padding-left: 10px;
+    padding-right: 10px;
+}

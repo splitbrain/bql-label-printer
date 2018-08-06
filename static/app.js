@@ -106,7 +106,7 @@ button.onclick = function () {
         })
     ;
 
-    /*
+    /* debugging:
     domtoimage.toPng(node)
         .then(function (dataUrl) {
             var img = new Image();
@@ -116,6 +116,6 @@ button.onclick = function () {
         .catch(function (error) {
             console.error('oops, something went wrong!', error);
         });
-     */
+    */
 };
 

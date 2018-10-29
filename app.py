@@ -62,6 +62,7 @@ def get_labels():
     :return:
     """
     filenames = glob(sys.path[0] + '/static/labels/*.html')
+    filenames.sort()
     return [basename(x[:-5]) for x in filenames]
 
 

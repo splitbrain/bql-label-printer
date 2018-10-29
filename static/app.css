@@ -12,7 +12,6 @@
     border: 1px solid #333;
     font-family: Arial, sans-serif;
     line-height: normal;
-    transform: scale(0.33);
     transform-origin: top right;
     float: right;
 }

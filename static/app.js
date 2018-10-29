@@ -16,6 +16,13 @@ labelSelect.onchange = function loadTemplate() {
         })
         .then(function (text) {
             wrapper.innerHTML = text;
+
+            if(wrapper.firstChild.hasAttribute('data-scale')) {
+                wrapper.style.transform = 'scale(' + wrapper.firstChild.getAttribute('data-scale') +')';
+            } else {
+                wrapper.style.transform = '';
+            }
+
             buildForm();
             buildQR();
         })

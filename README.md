@@ -41,7 +41,6 @@ Please feel free to submit feedback in the form of pull requests.
 Many thanks to the following projects:
 
 * [pklaus/brother_ql](https://github.com/pklaus/brother_ql)
-* [tsayen/dom-to-image](https://github.com/tsayen/dom-to-image)
-  * [MichalBryxi/dom-to-image](https://github.com/MichalBryxi/dom-to-image)
+* [1904labs/dom-to-image-more](https://github.com/1904labs/dom-to-image-more)
 * [oxalorg/sakura](https://github.com/oxalorg/sakura)
 * [KeeeX/qrcodejs](https://github.com/KeeeX/qrcodejs)

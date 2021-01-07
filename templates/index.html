@@ -1,36 +1,42 @@
 <html>
 <head>
     <title>Label Printer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <link rel="stylesheet" href="{{ url_for('static', filename='sakura.css') }}" type="text/css">
 <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}" type="text/css"/>
 <body>
 
-<form>
-    <label for="sel-label">Label:
-        <select id="sel-label" name="labels">
-            {% for label in labels %}
-                <option>{{ label }}</option>
-            {% endfor %}
-        </select>
-    </label>
-</form>
+<main>
+    <section class="template">
+        <form>
+            <label for="sel-label">Label:
+                <select id="sel-label" name="labels">
+                    {% for label in labels %}
+                        <option>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+        </form>
+    </section>
 
-<div id="scalefix">
-    <div id="wrapper">
-        Loading template...
-    </div>
-</div>
+    <section class="form">
+        <form id="form">
+        </form>
+        <button id="btn">Print</button>
+    </section>
 
-<form id="form">
+    <section class="preview">
+        <div id="scalefix">
+            <div id="wrapper">
+                Loading template...
+            </div>
+        </div>
+    </section>
 
-</form>
+</main>
 
-
-<button id="btn">Print</button>
-
-
-<script src="{{ url_for('static', filename='dom-to-image.min.js') }}"></script>
+<script src="{{ url_for('static', filename='dom-to-image-more.min.js') }}"></script>
 <script src="{{ url_for('static', filename='qrcode.min.js') }}"></script>
 <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>

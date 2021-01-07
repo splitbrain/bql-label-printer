@@ -15,6 +15,14 @@ section {
     max-width: 100%;
     overflow: auto;
 }
+
+#expiry {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    column-gap: 0.5em;
+    row-gap: 0.5em;
+}
+
 #wrapper {
     background-color: #fff;
     color: #000;

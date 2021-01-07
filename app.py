@@ -36,6 +36,16 @@ def do_editor():
         labels=get_labels()
     )
 
+@app.route('/expiry')
+def do_expiry():
+    """
+    The expiry label view
+    :return:
+    """
+    return render_template(
+        'expiry.html'
+    )
+
 
 @app.route('/print', methods=['POST'])
 def do_print():

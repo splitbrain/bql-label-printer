@@ -6,33 +6,35 @@ const button = document.getElementById('btn');
 /**
  * Load a template
  */
-labelSelect.onchange = function loadTemplate() {
-    fetch('/static/labels/' + labelSelect.value + '.html')
-        .then(function (response) {
-            if (response.ok) {
-                return response.text();
-            }
-            throw new Error('Network response was not ok.');
-        })
-        .then(function (text) {
-            wrapper.innerHTML = text;
+if (labelSelect) {
+    labelSelect.onchange = function loadTemplate() {
+        fetch('/static/labels/' + labelSelect.value + '.html')
+            .then(function (response) {
+                if (response.ok) {
+                    return response.text();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(function (text) {
+                wrapper.innerHTML = text;
 
-            if(wrapper.firstChild.hasAttribute('data-scale')) {
-                wrapper.style.transform = 'scale(' + wrapper.firstChild.getAttribute('data-scale') +')';
-            } else {
-                wrapper.style.transform = '';
-            }
+                if (wrapper.firstChild.hasAttribute('data-scale')) {
+                    wrapper.style.transform = 'scale(' + wrapper.firstChild.getAttribute('data-scale') + ')';
+                } else {
+                    wrapper.style.transform = '';
+                }
 
-            buildForm();
-            buildQR();
-        })
-        .catch(function (error) {
-            console.error('oops, something went wrong!', error);
-            alert(error)
-        })
-    ;
-};
-labelSelect.onchange(); // first load
+                buildForm();
+                buildQR();
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+                alert(error)
+            })
+        ;
+    };
+    labelSelect.onchange(); // first load
+}
 
 /**
  * Create the input form for the loaded template
@@ -49,7 +51,7 @@ function buildForm() {
             inp.placeholder = input.dataset.value;
             inp.oninput = function () {
                 input.dataset.value = inp.value;
-                if(input.qrcode) {
+                if (input.qrcode) {
                     input.qrcode.makeCode(inp.value);
                 }
             };
@@ -81,7 +83,11 @@ function buildQR() {
  * @return {string}
  */
 function getSize() {
-    return labelSelect.value.split('_')[0];
+    if(labelSelect) {
+        return labelSelect.value.split('_')[0];
+    } else {
+        return FIXEDSIZE; // custom interfaces can set a global fixed size
+    }
 }
 
 /**
@@ -90,7 +96,7 @@ function getSize() {
 button.onclick = function () {
     //const node = document.getElementById('label');
     const node = wrapper.querySelector(':first-child');
-
+    console.log(node);
     domtoimage.toBlob(node)
         .then(function (blob) {
             const fd = new FormData();

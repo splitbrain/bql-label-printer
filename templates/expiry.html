@@ -1,0 +1,80 @@
+<html>
+<head>
+    <title>Label Printer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<link rel="stylesheet" href="{{ url_for('static', filename='sakura.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}" type="text/css"/>
+<body>
+
+<main>
+
+    <section class="form">
+        <form id="expiry">
+            <script>
+                const FIXEDSIZE = '23x23';
+                (function () {
+                    const form = document.getElementById('expiry');
+                    const months = [
+                        'Jan',
+                        'Feb',
+                        'Mrz',
+                        'Apr',
+                        'Mai',
+                        'Jun',
+                        'Jul',
+                        'Aug',
+                        'Sep',
+                        'Okt',
+                        'Nov',
+                        'Dez'
+                    ];
+
+                    for (let i = 0; i < 12; i++) {
+                        const btn = document.createElement('button');
+                        btn.textContent = months[i];
+                        btn.onclick = function (e) {
+                            e.preventDefault();
+                            document.getElementById('month').textContent = btn.textContent;
+                        }
+                        form.append(btn);
+                    }
+
+                    const now = (new Date()).getFullYear();
+                    for (let i = 0; i < 6; i++) {
+                        const btn = document.createElement('button');
+                        btn.textContent = now + i;
+                        btn.onclick = function (e) {
+                            e.preventDefault();
+                            document.getElementById('year').textContent = btn.textContent;
+                        }
+                        form.append(btn);
+                    }
+                })();
+            </script>
+        </form>
+        <button id="btn">Print</button>
+    </section>
+
+    <section class="preview">
+        <div id="scalefix">
+            <div id="wrapper">
+                <div style="width: 202px; height:202px;">
+                    <div class="single center" style="height:91px; font-size: 75px;">
+                        <span class="input" id="month">Mnth</span>
+                    </div>
+                    <div class="single center" style="height:111px; font-size: 90px; font-weight: bold;">
+                        <span class="input" id="year">Year</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script src="{{ url_for('static', filename='dom-to-image-more.min.js') }}"></script>
+<script src="{{ url_for('static', filename='qrcode.min.js') }}"></script>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
